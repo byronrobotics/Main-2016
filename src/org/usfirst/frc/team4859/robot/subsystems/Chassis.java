@@ -6,7 +6,7 @@ import org.usfirst.frc.team4859.robot.ThrottleLookup.ThrottleLookup;
 import org.usfirst.frc.team4859.robot.commands.DriveWithJoystick;
 
 import edu.wpi.first.wpilibj.CANTalon;
-import edu.wpi.first.wpilibj.CANTalon.ControlMode;
+import edu.wpi.first.wpilibj.CANTalon.TalonControlMode;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.Talon;
@@ -56,6 +56,7 @@ public class Chassis extends Subsystem
 		SmartDashboard.putString("ROBOT MODE", (RobotMap.pMode) ? "Slow" : "Normal");	
 				
 		SmartDashboard.putNumber("JoystickY", yAxis);
+		SmartDashboard.putNumber("True JoyY", joystickP0.getY());
 		SmartDashboard.putNumber("JoystickX", xAxis);
 		SmartDashboard.putNumber("JoystickTwist", twist);
 		SmartDashboard.putBoolean("Precision Mode", RobotMap.pMode);
@@ -64,6 +65,7 @@ public class Chassis extends Subsystem
 		//left/right, forward/backward, turning, gyro (none)
 		//chassisDrive.mecanumDrive_Cartesian(xAxis, fakeYAxis, fakeTwist, 0);
 		chassisDrive.arcadeDrive(-yAxis, -twist);
+		//chassisDrive.arcadeDrive(joystickP0.getY(), joystickP0.getTwist());
 	}
 	
 	public void DriveStraight(double inputSpeed)

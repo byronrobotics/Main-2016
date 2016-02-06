@@ -6,12 +6,12 @@ public class ThrottleLookup
 
 		// SlowY
 		public static double[][] correctionTable1 = {
-			{.015, .25, .500, .7500, 1.00},
-			{.000, .05, .1, .2, 0.5}};
+			{0.015, 0.25, 0.5, 0.75, 1.0},
+			{0.000, 0.05, 0.1, 0.2, 0.5}};
 		// NormY
 		public static double[][] correctionTable2 = {
-			{.015, .25, .70, .75, 1.0},
-			{.000, .15, .35, .75, 1.0}};
+			{0.015, 0.25, 0.50, 0.75, 1.0},
+			{0.000, 0.15, 0.35, 0.75, 1.0}};
 
 		// SlowT
 		public static double[][] correctionTable3 = {
@@ -20,13 +20,13 @@ public class ThrottleLookup
 
 		// NormT
 		public static double[][] correctionTable4 = {
-			{.015, .250, .50, .75, 1.0},
-			{.000, .075, .15, .30, 0.6}};
+			{0.015, 0.250, 0.50, 0.75, 1.0},
+			{0.000, 0.075, 0.15, 0.30, 0.6}};
 	
 	public static double calcJoystickCorrection(String tableName, double x)
 	{
 		double[][] correctionTable;
-		
+
 		switch (tableName)
 		{
 			case "SlowY" : correctionTable = correctionTable1;
@@ -46,7 +46,7 @@ public class ThrottleLookup
 		int pos = 0; 
 		double returnValue;
 		
-		while ((pos < 5) && (x > correctionTable1[0][pos]))
+		while ((pos < 5) && (x > correctionTable[0][pos]))
 		{
 			pos++;
 		}
@@ -63,7 +63,7 @@ public class ThrottleLookup
 			}
 			else
 			{
-				return 0;
+				return 0.0;
 			}
 		}
 		else
