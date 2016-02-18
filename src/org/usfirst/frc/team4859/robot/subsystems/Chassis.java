@@ -11,12 +11,13 @@ import edu.wpi.first.wpilibj.BuiltInAccelerometer;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.AnalogPotentiometer;
+import edu.wpi.first.wpilibj.command.PIDSubsystem;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.interfaces.Gyro;
 import edu.wpi.first.wpilibj.interfaces.Potentiometer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-public class Chassis extends Subsystem {
+public class Chassis extends PIDSubsystem {
 	// Creating and setting motors
 	static CANTalon motorChassisRight = new CANTalon(RobotMap.talonDevIDChassisRight);
 	static CANTalon motorChassisRightSlave = new CANTalon(RobotMap.talonDevIDChassisRightSlave);
@@ -36,7 +37,7 @@ public class Chassis extends Subsystem {
 	static RobotDrive chassisDrive = new RobotDrive(motorChassisLeft, motorChassisRight);
 	
 	public Chassis() {
-		super();
+		super("Chassis", 0.0, 0, 0);
 		
 		motorChassisRightSlave.changeControlMode(TalonControlMode.Follower);
 		motorChassisLeftSlave.changeControlMode(TalonControlMode.Follower);
@@ -53,6 +54,16 @@ public class Chassis extends Subsystem {
 	
 	public void initDefaultCommand () {
 		setDefaultCommand(new DriveWithJoystick());
+	}
+	
+	@Override
+	protected double returnPIDInput() {
+		return 0;
+	}
+
+	@Override
+	protected void usePIDOutput(double output) {
+		
 	}
 	
 	public void driveWithJoystick(Joystick joystickP0) {
