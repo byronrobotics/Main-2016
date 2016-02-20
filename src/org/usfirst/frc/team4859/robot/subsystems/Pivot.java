@@ -26,12 +26,12 @@ public class Pivot extends PIDSubsystem {
     
 	@Override
 	protected double returnPIDInput() {
-		return 0;
+		return motorLauncherAngle.getPosition();
 	}
 
 	@Override
 	protected void usePIDOutput(double output) {
-		
+		motorLauncherAngle.pidWrite(output);
 	} 
       
     public void LauncherAngleUp() {
