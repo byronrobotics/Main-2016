@@ -1,5 +1,7 @@
 package org.usfirst.frc.team4859.robot;
 
+import java.util.Arrays;
+
 import org.usfirst.frc.team4859.robot.autonomous.AutoNothing;
 import org.usfirst.frc.team4859.robot.autonomous.Autonomous;
 import org.usfirst.frc.team4859.robot.autonomous.LowBarAndGoal;
@@ -29,8 +31,8 @@ public class Robot extends IterativeRobot {
 	public static ADXRS450_Gyro gyro;
 	public static int ultraCounter;
 	public static OI oi;
-
 	public static double start;
+	public double median;
 	
     Command autonomousCommand;
     SendableChooser autonomousChooser;
@@ -85,8 +87,6 @@ public class Robot extends IterativeRobot {
     public void autonomousPeriodic() {
     	//if (launcher.limitDown.get()) start = launcher.motorLauncherAngle.getPosition();
     	
-    	
-    	
     	SmartDashboard.putNumber("Distance (inches)", Robot.ultra.getAverageVoltage()*8.8365*12);
 		SmartDashboard.putNumber("Distance (feet)", (Robot.ultra.getAverageVoltage()*8.8365));
 		SmartDashboard.putNumber("Distance 2 (inches) ", Robot.ultra2.getAverageVoltage()*8.8365*12);
@@ -130,6 +130,7 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("Distance 2 (feet)", (Robot.ultra2.getVoltage()*8.8365));
 		
 		SmartDashboard.putNumber("Gyro Angle", (Robot.gyro.getAngle()));
+		
         Scheduler.getInstance().run();
     }
     
